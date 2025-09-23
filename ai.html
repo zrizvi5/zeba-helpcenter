@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AI UX — Chat Demo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="brand small">AI UX — Chat Demo</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="operator.html">Operator UX</a>
+        <a href="human.html">Human UX</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>AI Assistant (mock RAG behavior)</h2>
+      <div class="chat-wrap">
+        <div id="chatLog" class="chat-log">
+          <div class="bot">🤖 Hi — ask me product help. I’ll retrieve snippets with metadata & confidence.</div>
+        </div>
+
+        <div class="chat-input">
+          <input id="userQ" placeholder="How do I set a card limit for a team member in the UK?" />
+          <select id="pretendRole"><option value="admin">Role: Admin</option><option value="card">Cardholder</option><option value="accountant">Accountant</option></select>
+          <select id="pretendTier"><option value="all">Tier: All</option><option value="free">Free</option><option value="plus">Plus</option></select>
+          <select id="pretendRegion"><option value="us">Region: US</option><option value="uk" selected>UK</option><option value="intl">Other</option></select>
+          <button id="askBtn" class="cta">Ask</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel small">
+      <h3>Retrieval behavior (mock)</h3>
+      <ul>
+        <li><strong>Metadata-aware:</strong> Filters by role, tier, region before ranking.</li>
+        <li><strong>Snippet-level:</strong> Return top paragraph(s) with links to source articles.</li>
+        <li><strong>Confidence threshold:</strong> Low confidence triggers suggested-articles fallback and flags operator review.</li>
+        <li><strong>Usage-aware ranking:</strong> View counts + helpfulness influence rank and confidence.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container"><small>AI UX demo — mock retrieval</small></div></footer>
+
+<script>
+// Mock corpus with metadata and view counts
+const corpus = [
+  {id:1, title:"Bill payment methods and timelines", paragraph:"ACH payments: 1–2 business days; expedited rails for Plus.", metadata:{role:"admin", tier:"all", region:"us"}, views:14240},
+  {id:2, title:"Managing Card Limits", paragraph:"Admins can set per-user card limits via Admin → Cards → Manage limit (UK: set in GBP).", metadata:{role:"admin", tier:"all", region:"uk"}, views:8420},
+  {id:3, title:"Plus: Auto-approval policies", paragraph:"Plus customers can configure auto-approval thresholds.", metadata:{role:"admin", tier:"plus", region:"all"}, views:3200},
+  {id:4, title:"Integrating with QuickBooks", paragraph:"Export receipts CSV then import to QuickBooks via Apps → QuickBooks import.", metadata:{role:"accountant", tier:"all", region:"us"}, views:3000},
+  {id:5, title:"Auto-capture receipts", paragraph:"Enable auto-capture by connecting your email and enabling forwarding.", metadata:{role:"cardholder", tier:"all", region:"all"}, views:12420}
+];
+
+const chatLog = document.getElementById('chatLog');
+function appendUser(text){ const d=document.createElement('div'); d.className='user'; d.textContent=text; chatLog.appendChild(d); chatLog.scrollTop = chatLog.scrollHeight; }
+function appendBot(html){ const d=document.createElement('div'); d.className='bot'; d.innerHTML=html; chatLog.appendChild(d); chatLog.scrollTop = chatLog.scrollHeight; }
+
+document.getElementById('askBtn').addEventListener('click', ()=>{
+  const query = document.getElementById('userQ').value.trim();
+  const role = document.getElementById('pretendRole').value;
+  const tier = document.getElementById('pretendTier').value;
+  const region = document.getElementById('pretendRegion').value;
+  if(!query) return;
+  appendUser(query);
+  appendBot('Searching relevant articles...');
+
+  setTimeout(()=>{
+    // filter by metadata
+    let candidates = corpus.filter(c=>{
+      if(role && role!=='all' && c.metadata.role !== role && c.metadata.role !== 'all') return false;
+      if(tier && tier!=='all' && c.metadata.tier && c.metadata.tier !== tier && c.metadata.tier !== 'all') return false;
+      if(region && region!=='all' && c.metadata.region && c.metadata.region !== region && c.metadata.region !== 'all') return false;
+      return true;
+    });
+
+    // fallback: relax filters
+    if(candidates.length===0){
+      candidates = corpus.slice();
+    }
+
+    // rank by views and simple text match
+    candidates.sort((a,b)=>b.views - a.views);
+    const top = candidates[0];
+    const confidence = Math.min(98, 40 + Math.floor(top.views/200));
+
+    // low confidence path
+    if(confidence < 55){
+      chatLog.lastChild.innerHTML = '<em>Low confidence — returning suggested articles and flagging for operator review.</em>';
+      appendBot('<strong>Suggested articles</strong><br><ul><li><a href="operator.html">Bill payment methods and timelines</a></li><li><a href="operator.html">Bill Pay — Getting Started</a></li></ul><div class="flag-note">Query flagged for operator review (mock)</div>');
+      return;
+    }
+
+    chatLog.lastChild.remove();
+    appendBot(`<div class="snippet">
+      <div class="snippet-text">${top.paragraph}</div>
+      <div class="snippet-meta">
+        <span class="meta-pill">Source: ${top.title}</span>
+        <span class="meta-pill">Applies to: ${top.metadata.role}</span>
+        <span class="meta-pill">Tier: ${top.metadata.tier || 'all'}</span>
+        <span class="meta-pill">Region: ${top.metadata.region}</span>
+        <span class="confidence">Confidence: <strong>${confidence}%</strong></span>
+      </div>
+      <div class="snippet-actions">
+        <button class="small" onclick="alert('Flagged for operator review (mock)')">Flag</button>
+        <button class="small" onclick="alert('Open article in Help Center (mock)')">Open Article</button>
+      </div>
+    </div>`);
+  }, 900);
+});
+</script>
+</body>
+</html>
