@@ -1,50 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ramp Help Center Prototype</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <title>Ramp Help Center — Prototype</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Ramp Help Center</h1>
-    <p class="tagline">Find answers faster — tailored by role, tier, and context</p>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="brand">Ramp — Help Center Prototype</h1>
+      <nav>
+        <a href="operator.html">Operator UX</a>
+        <a href="human.html">Human UX</a>
+        <a href="ai.html">AI UX</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="search">
-      <input type="text" placeholder="Search articles...">
-      <button>Search</button>
+  <main class="container home">
+    <section class="hero">
+      <h2>Prototype: Knowledge, Human UX, and AI retrieval</h2>
+      <p class="tagline">Operator workflows, metadata-driven content delivery, and RAG-style retrieval — mocked and interactive.</p>
+      <div class="cta-row">
+        <a class="cta" href="operator.html">Open Operator Dashboard</a>
+        <a class="cta ghost" href="human.html">Open Human Help Experience</a>
+        <a class="cta ghost" href="ai.html">Open AI Chat Demo</a>
+      </div>
     </section>
 
-    <section class="filters">
-      <h2>Filter by Role</h2>
-      <button>Cardholder</button>
-      <button>Admin</button>
-      <button>Accountant</button>
-      <button>Bookkeeper</button>
-    </section>
-
-    <section class="popular">
-      <h2>Popular Articles</h2>
+    <section class="notes panel">
+      <h3>Notes for reviewers</h3>
       <ul>
-        <li><a href="receiptautocapturehelp.html">Receipt Auto-Capture</a></li>
-        <li><a href="receiptautocapturehelp.html">Receipt Auto-Capture</a></li>
-        <li><a href="receiptautocapturehelp.html">Receipt Auto-Capture</a></li>
-        <li><a href="zendesk-demo.html" class="button">Zendesk API Demo</a></li>
+        <li>The Operator dashboard uses a <strong>content health score</strong> (views, age, tag completeness).</li>
+        <li>Human UX demonstrates progressive disclosure with role/tier/region filters and an "Let AI find" prompt.</li>
+        <li>AI UX returns snippet-level answers with metadata and confidence; low-confidence falls back to suggested articles and flags operators.</li>
       </ul>
-    </section>
-
-    <section class="demo">
-      <h2>AI Help Center Assistant</h2>
-      <p>See how Ramp AI could retrieve knowledge from our articles.</p>
-      <a href="chatbotdemo.html" class="button">Try AI Demo</a>
     </section>
   </main>
 
-  <footer>
-    <p>Prototype — for interview demo only</p>
+  <footer class="footer">
+    <div class="container">
+      <small>Prototype for interview — made by Zeba Rizvi</small>
+    </div>
   </footer>
 </body>
 </html>
