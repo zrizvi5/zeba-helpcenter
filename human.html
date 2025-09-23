@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Human Help Experience — Ramp Prototype</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="brand small">Human Help Experience</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="operator.html">Operator UX</a>
+        <a href="ai.html">AI UX</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Search -->
+    <section class="panel">
+      <h2>How can we help?</h2>
+      <div class="search-row">
+        <input id="mainSearch" placeholder="Search articles, e.g. 'Paying bills'">
+        <div class="filters-row">
+          <select id="accountType">
+            <option value="individual">Individual</option>
+            <option value="enterprise">Enterprise</option>
+          </select>
+          <select id="roleFilter">
+            <option value="cardholder">Cardholder</option>
+            <option value="admin">Admin</option>
+            <option value="accountant">Accountant</option>
+          </select>
+          <select id="tierFilter">
+            <option value="free">Free</option>
+            <option value="plus">Plus</option>
+          </select>
+          <select id="regionFilter">
+            <option value="us">US</option>
+            <option value="uk">UK</option>
+            <option value="intl">Other</option>
+          </select>
+          <button id="searchBtn" class="cta small">Search</button>
+        </div>
+        <p class="muted small">For authenticated users, these filters would be pre-filled from profile data.</p>
+      </div>
+    </section>
+
+    <!-- Guides by topic -->
+    <section class="panel">
+      <h3>Guides by Topic</h3>
+      <div class="topics-grid">
+        <div class="topic-card">
+          <h4>Accounting</h4>
+          <ul>
+            <li>Overview of Ramp Accounting</li>
+            <li>Accounting Provider Migrations</li>
+            <li>Ramp with NetSuite</li>
+            <li>Split expense automations in Ramp</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <h4>Bill Pay</h4>
+          <ul>
+            <li>Bill Pay — Getting Started</li>
+            <li>Bill Pay — Accounting</li>
+            <li>Bill Pay — Payments</li>
+            <li>Bill Creation and Management</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <h4>Cards and Transactions</h4>
+          <ul>
+            <li>Transaction declines</li>
+            <li>Ramp card management</li>
+            <li>Simplifying expense management</li>
+            <li>Ramp for Excel</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search results -->
+    <section id="results" class="panel" style="display:none;">
+      <h3>Search results for "<span id="queryTerm"></span>"</h3>
+      <div id="resultsList"></div>
+    </section>
+
+    <!-- Article view -->
+    <section id="articleView" class="panel" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2 id="articleTitle">Bill payment methods and timelines</h2>
+        <div class="muted small">Last edited: Sept 10, 2025 • Owner: Payments</div>
+      </div>
+
+      <!-- top filters repeated -->
+      <div class="disclosure-box">
+        <label for="roleSelectTop">Who are you?</label>
+        <select id="roleSelectTop">
+          <option value="">— choose role —</option>
+          <option value="cardholder">Cardholder</option>
+          <option value="admin">Admin</option>
+          <option value="accountant">Accountant</option>
+        </select>
+        <label for="tierSelectTop">Product Tier</label>
+        <select id="tierSelectTop">
+          <option value="">— choose tier —</option>
+          <option value="free">Free</option>
+          <option value="plus">Plus</option>
+        </select>
+        <label for="regionSelectTop">Region</label>
+        <select id="regionSelectTop">
+          <option value="">— choose region —</option>
+          <option value="us">United States</option>
+          <option value="uk">United Kingdom</option>
+        </select>
+        <button id="aiFindBtn" class="cta small">Let AI find the most relevant content for you in this article</button>
+      </div>
+
+      <div id="articleMeta" class="muted small">
+        Tags: <span id="articleTags"></span>
+      </div>
+
+      <hr>
+
+      <section id="genericTop">
+        <h3>Overview</h3>
+        <p>
+          Generic summary of bill payments: payment rails, expected timelines, common fees,
+          and general compliance notes. This section applies broadly to most customers.
+        </p>
+      </section>
+
+      <!-- tabs -->
+      <div class="tabs">
+        <button class="tabbtn active" data-tab="us">US Customer</button>
+        <button class="tabbtn" data-tab="intl">International Customer</button>
+        <button class="tabbtn" data-tab="plus">Plus Member</button>
+      </div>
+
+      <div id="tabContent">
+        <div id="us" class="tabpane">
+          <h4>US Customer</h4>
+          <ol>
+            <li>ACH payments: 1–2 business days (typical).</li>
+            <li>Check processing: 3–5 business days.</li>
+            <li>Expedited options available for Plus customers.</li>
+          </ol>
+        </div>
+        <div id="intl" class="tabpane" style="display:none">
+          <h4>International Customer</h4>
+          <ol>
+            <li>International wire: 1–3 business days depending on correspondent banks.</li>
+            <li>Currency conversion may add 1 business day.</li>
+          </ol>
+        </div>
+        <div id="plus" class="tabpane" style="display:none">
+          <h4>Plus Member</h4>
+          <ol>
+            <li>Auto-approval / expedited rails for approved suppliers.</li>
+            <li>ERP sync and advanced tracking available for Plus customers.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="feedback small muted">
+        <p>
+          Still not what you need? Ask our <a href="ai.html">AI assistant</a> or visit
+          <a href="operator.html">Operator UX</a> to see how we'd update the article (operators only).
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><small>Human Help Experience demo — progressive disclosure</small></div>
+  </footer>
+
+  <script>
+    // Mock sample corpus for search
+    const sampleArticles = [
+      {id:'b1', title:'Bill payment methods and timelines', tags:['Bill Payment','Plus Feature','Enterprise Account'], snippet:'Overview of payment rails and expected timings.'},
+      {id:'b2', title:'Bill Pay Getting Started', tags:['Bill Pay','Onboarding'], snippet:'Walkthrough to get started with Bill Pay.'},
+      {id:'b3', title:'Bill Pay — Accounting', tags:['Bill Pay','Accounting'], snippet:'How to reconcile bill payments with accounting systems.'},
+      {id:'b4', title:'Integrating with QuickBooks', tags:['Integration','Accounting'], snippet:'Export receipts CSV then import into QuickBooks.'},
+      {id:'b5', title:'Transaction declines', tags:['Cards','Errors'], snippet:'What to do when a card declines.'}
+    ];
+
+    // Search handler
+    document.getElementById('searchBtn').addEventListener('click', ()=>{
+      const q = document.getElementById('mainSearch').value.trim() || 'Paying bills';
+      document.getElementById('queryTerm').textContent = q;
+
+      // fuzzy match: split query into tokens
+      const tokens = q.toLowerCase().split(/\s+/);
+      const results = sampleArticles.filter(a =>
+        tokens.some(tok =>
+          a.title.toLowerCase().includes(tok) ||
+          a.snippet.toLowerCase().includes(tok) ||
+          a.tags.some(t => t.toLowerCase().includes(tok))
+        )
+      );
+
+      const list = document.getElementById('resultsList');
+      list.innerHTML = '';
+      results.forEach(r=>{
+        const card = document.createElement('div');
+        card.className = 'search-result';
+        card.innerHTML = `
+          <h4 class="result-title"><a href="#" data-id="${r.id}">${r.title}</a></h4>
+          <div class="muted small">${r.snippet}</div>
+          <div style="margin-top:8px">${r.tags.map(t=>`<span class="tag small">${t}</span>`).join(' ')}</div>
+        `;
+        list.appendChild(card);
+      });
+
+      document.getElementById('results').style.display='block';
+      document.getElementById('articleView').style.display='none';
+    });
+
+    // handle click on result to open article
+    document.addEventListener('click', (e)=>{
+      if(e.target.matches('.result-title a')){
+        e.preventDefault();
+        const id = e.target.dataset.id;
+        if(id==='b1'){ showArticle(); }
+        else { alert('Open sample article: ' + e.target.textContent + ' (mock)'); }
+      }
+    });
+
+    // show Bill payment article
+    function showArticle(){
+      document.getElementById('results').style.display='none';
+      document.getElementById('articleView').style.display='block';
+      document.getElementById('articleTags').innerHTML =
+        ['Bill Payment','Plus Feature','Enterprise Account']
+          .map(t=>`<span class="tag small">${t}</span>`).join(' ');
+      window.scrollTo({top:200, behavior:'smooth'});
+    }
+
+    // Tabs
+    document.querySelectorAll('.tabbtn').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        const tab = e.currentTarget.dataset.tab;
+        document.querySelectorAll('.tabpane').forEach(p=>p.style.display='none');
+        document.getElementById(tab).style.display='block';
+      });
+    });
+
+    // AI find button
+    document.getElementById('aiFindBtn').addEventListener('click', ()=>{
+      const hint = 'Tell the AI more about who you are and how you use Ramp (for example, "I\'m an enterprise account administrator for a UK B2B SaaS company").';
+      const info = prompt(hint,'I am an enterprise admin for a UK SaaS co.');
+      if(info){
+        alert('AI found content tailored to: ' + info + ' (mock)');
+      }
+    });
+  </script>
+</body>
+</html>
