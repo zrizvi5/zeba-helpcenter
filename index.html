@@ -9,7 +9,10 @@
 <body>
   <header class="topbar">
     <div class="container">
-      <h1 class="brand">Ramp — Help Center Prototype</h1>
+      <div class="brand-wrap">
+        <img src="ramplogo.png" alt="Ramp" class="logo">
+        <h1 class="brand">Ramp — Help Center Prototype</h1>
+      </div>
       <nav>
         <a href="operator.html">Operator UX</a>
         <a href="human.html">Human UX</a>
@@ -21,21 +24,14 @@
   <main class="container home">
     <section class="hero">
       <h2>Prototype: Knowledge, Human UX, and AI retrieval</h2>
-      <p class="tagline">Operator workflows, metadata-driven content delivery, and RAG-style retrieval — mocked and interactive.</p>
+      <p class="tagline">
+        Operator workflows, metadata-driven content delivery, and RAG-style retrieval — mocked and interactive.
+      </p>
       <div class="cta-row">
         <a class="cta" href="operator.html">Open Operator Dashboard</a>
         <a class="cta ghost" href="human.html">Open Human Help Experience</a>
-        <a class="cta ghost" href="ai.html">Open AI Chat Demo</a>
+        <a class="cta ghost" href="ai.html">Open Help Assistant</a>
       </div>
-    </section>
-
-    <section class="notes panel">
-      <h3>Notes for reviewers</h3>
-      <ul>
-        <li>The Operator dashboard uses a <strong>content health score</strong> (views, age, tag completeness).</li>
-        <li>Human UX demonstrates progressive disclosure with role/tier/region filters and an "Let AI find" prompt.</li>
-        <li>AI UX returns snippet-level answers with metadata and confidence; low-confidence falls back to suggested articles and flags operators.</li>
-      </ul>
     </section>
   </main>
 
