@@ -7,337 +7,164 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="container">
+<header class="topbar">
+  <div class="container">
+    <div class="brand-wrap">
+      <img src="ramplogo.png" alt="Ramp" class="logo">
       <h1 class="brand small">Operator Center</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="human.html">Human UX</a>
-        <a href="ai.html">AI UX</a>
-      </nav>
     </div>
-  </header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="human.html">Human UX</a>
+      <a href="ai.html">AI UX</a>
+    </nav>
+  </div>
+</header>
 
-  <main class="container">
-    <!-- Collapsible hierarchy -->
-    <section class="panel">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <h2>Knowledge Hierarchy</h2>
-        <div class="hint">Collapsible topic tree — expand to see articles</div>
-      </div>
-      <div id="hierarchy" class="hierarchy">
-        <details open>
-          <summary>Accounting</summary>
-          <ul>
-            <li>Overview of Ramp Accounting</li>
-            <li>Accounting Provider Migrations</li>
-            <li>Ramp with NetSuite</li>
-            <li>Split expense automations in Ramp</li>
-          </ul>
-        </details>
-        <details open>
-          <summary>Bill Pay</summary>
-          <ul>
-            <li>Bill Pay — Getting Started</li>
-            <li>Bill Pay — Accounting</li>
-            <li>Bill Pay — Payments</li>
-            <li>Bill Creation and Management</li>
-            <li><strong>Bill payment methods and timelines</strong></li>
-          </ul>
-        </details>
-        <details>
-          <summary>Cards & Transactions</summary>
-          <ul>
-            <li>Transaction declines</li>
-            <li>Ramp card management</li>
-            <li>Simplifying expense management</li>
-            <li>Ramp for Excel</li>
-          </ul>
-        </details>
-      </div>
-    </section>
-
-    <!-- Dashboard -->
-    <section class="panel">
-      <div class="panel-head">
-        <h2>Article Health Dashboard</h2>
-        <div class="filters-inline">
-          <input id="searchArticles" placeholder="Search articles...">
-          <select id="filterParent"><option value="all">All Parents</option><option>Bill Pay</option><option>Accounting</option><option>Cards & Transactions</option></select>
-          <select id="filterRole"><option value="all">All Roles</option><option>Admin</option><option>Cardholder</option><option>Accountant</option></select>
-          <select id="filterTier"><option value="all">All Tiers</option><option>Free</option><option>Plus</option></select>
-          <button id="refreshBtn" class="small">Refresh</button>
-          <button id="newArticleBtn" class="cta small">Create New Article</button>
-        </div>
-      </div>
-
-      <table class="dashboard-table" id="articlesTable">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Parent</th>
-            <th>Verification</th>
-            <th>Owner</th>
-            <th>URL</th>
-            <th>Metadata / Tags</th>
-            <th>Last Edited</th>
-            <th>Content Health</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
-    <!-- Network & selection -->
-    <section class="panel half">
-      <h3>Article Relationship Network</h3>
-      <div id="networkWrap">
-        <svg id="networkSVG" viewBox="0 0 900 360" class="network"></svg>
-      </div>
-      <p class="hint">Lines show relationships; labels show relationship type (e.g., "error", "parent", "duplicate", "related"). Blacked-out nodes are flagged/decommissioned.</p>
-    </section>
-
-    <section class="panel half">
-      <h3>Selected Article — Inline AI Suggestions</h3>
-      <div id="selectedCard" class="article-card">
-        <h4 id="selTitle">Select an article from the dashboard to view suggestions</h4>
-        <div id="metaRow" class="muted small"></div>
-        <div id="tagRow"></div>
-        <hr>
-        <div id="suggestions"></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <small>Operator UX demo — mock data & AI suggestions</small>
+<main class="container">
+  <!-- Hierarchy -->
+  <section class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h2>Knowledge Hierarchy</h2>
+      <div class="hint">Collapsible topic tree</div>
     </div>
-  </footer>
+    <div id="hierarchy" class="hierarchy">
+      <details open><summary>Accounting</summary>
+        <ul>
+          <li><a href="article.html">Auto-capture receipts</a></li>
+          <li><a href="article.html">Integrating with QuickBooks</a></li>
+        </ul>
+      </details>
+      <details open><summary>Bill Pay</summary>
+        <ul>
+          <li><a href="article.html">Bill payment methods and timelines</a></li>
+          <li><a href="article.html">Legacy Billing Flow</a></li>
+        </ul>
+      </details>
+      <details><summary>Cards & Transactions</summary>
+        <ul>
+          <li><a href="article.html">Managing Card Limits</a></li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <!-- Dashboard -->
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Article Health Dashboard</h2>
+      <div class="filters-inline">
+        <input id="searchArticles" placeholder="Search articles...">
+        <button id="refreshBtn" class="small secondary">Refresh</button>
+        <button id="newArticleBtn" class="cta small">+ New Article</button>
+      </div>
+    </div>
+    <table class="dashboard-table" id="articlesTable">
+      <thead><tr>
+        <th>Title</th><th>Parent</th><th>Owner</th><th>Last Edited</th><th>Tags</th><th>Content Health</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- Network -->
+  <section class="panel">
+    <h3>Article Relationship Network</h3>
+    <svg id="networkSVG" viewBox="0 0 900 400" class="network"></svg>
+  </section>
+
+  <!-- Suggestions -->
+  <section class="panel">
+    <h3>Selected Article — AI Suggestions</h3>
+    <div id="selectedCard" class="article-card">
+      <h4 id="selTitle">Select an article</h4>
+      <div id="metaRow" class="muted small"></div>
+      <div id="tagRow"></div><hr>
+      <div id="suggestions"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><div class="container"><small>Operator UX demo</small></div></footer>
 
 <script>
-// Mock dataset (expanded)
-const articles = [
-  {
-    id: 'a1',
-    title: "Bill payment methods and timelines",
-    parent: "Bill Pay",
-    verification: "Verified",
-    owner: "Payments",
-    url: "bill-pay-methods.html",
-    tags: ["Bill Payment","Plus Feature","Enterprise Account"],
-    last_edited: "2025-09-10",
-    views30: 14240,
-    rating: 4.2,
-    deprecated:false,
-    healthScore: 88,
-    suggested: [
-      {type:"tag", text:"Suggested tag: 'International'", source:"Search queries 30d", link:"#"},
-      {type:"deprecated", text:"References legacy 'ACH-Lite' flow— product changed 2025-08-01", source:"GitHub commit #894", link:"#"},
-      {type:"conflict", text:"Product flow docs suggest 2-day processing; article says 3-5 days", source:"Product Flow (internal)", link:"#"}
-    ]
-  },
-  {
-    id: 'a2',
-    title: "Auto-capture receipts",
-    parent: "Accounting",
-    verification: "Verified",
-    owner: "Product Ops",
-    url: "ReceiptAutoCaptureHelp.html",
-    tags: ["Cardholder","Plus","Domestic","Receipts"],
-    last_edited: "2025-09-01",
-    views30: 12420,
-    rating: 4.3,
-    deprecated:false,
-    healthScore: 86,
-    suggested: [
-      {type:"deprecated", text:"Mentions legacy 'receipt-scanner' flow. Suggest review.", source:"GitHub commit #342", link:"#"},
-      {type:"tag", text:"Suggested tag: 'Plus'", source:"Feature-tier mapping", link:"#"}
-    ]
-  },
-  {
-    id: 'a3',
-    title: "Managing Card Limits",
-    parent: "Cards & Transactions",
-    verification: "Unverified",
-    owner: "Finance",
-    url: "article.html",
-    tags: ["Admin","All","Cards"],
-    last_edited: "2024-12-12",
-    views30: 8420,
-    rating: 2.1,
-    deprecated:false,
-    healthScore: 42,
-    suggested: [{type:"update", text:"Low helpfulness rating. Add screenshots.", source:"User feedback 30d", link:"#"}]
-  },
-  {
-    id: 'a4',
-    title: "Integrating with QuickBooks",
-    parent: "Accounting",
-    verification: "Verified",
-    owner: "Integrations",
-    url: "article.html",
-    tags: ["Admin","Integration","QuickBooks"],
-    last_edited: "2025-05-20",
-    views30: 3200,
-    rating: 4.6,
-    deprecated:false,
-    healthScore: 78,
-    suggested: [{type:"tag", text:"Consider adding 'International' section", source:"Search queries 30d", link:"#"}]
-  },
-  {
-    id: 'a5',
-    title: "Legacy Billing Flow (flagged)",
-    parent: "Bill Pay",
-    verification: "Flagged",
-    owner: "—",
-    url: "#",
-    tags: ["DEPRECATED"],
-    last_edited: "2021-03-05",
-    views30: 40,
-    rating: 1.0,
-    deprecated:true,
-    healthScore: 10,
-    suggested: []
-  }
+const articles=[
+ {id:'a1',title:"Bill payment methods and timelines",parent:"Bill Pay",owner:"Payments",last:"2025-09-10",tags:["Bill","Plus"],health:88,
+   suggested:[
+     {type:"AI Flag: Deprecated Feature",text:"References legacy ACH-Lite flow",source:"GitHub commit #894"},
+     {type:"AI Flag: Outdated Terminology",text:"Mismatch with product flow docs (timelines)",source:"Product Flow"}
+   ]},
+ {id:'a2',title:"Auto-capture receipts",parent:"Accounting",owner:"Product Ops",last:"2025-09-01",tags:["Receipts"],health:86,
+   suggested:[{type:"AI Flag: Outdated Terminology",text:"Mentions old receipt-scanner flow",source:"GitHub commit #342"}]},
+ {id:'a3',title:"Managing Card Limits",parent:"Cards & Transactions",owner:"Finance",last:"2024-12-12",tags:["Cards"],health:42,
+   suggested:[{type:"AI Flag: Outdated Terminology",text:"Low helpfulness rating. Add screenshots.",source:"User feedback"}]},
+ {id:'a4',title:"Legacy Billing Flow",parent:"Bill Pay",owner:"—",last:"2021-03-05",tags:["DEPRECATED"],health:10,suggested:[]}
 ];
 
-// helpers for rendering
-function renderTable(list){
-  const tbody = document.querySelector('#articlesTable tbody');
-  tbody.innerHTML = '';
-  list.forEach(a=>{
-    const tr = document.createElement('tr');
-    tr.dataset.id = a.id;
-    tr.innerHTML = `
-      <td><a class="sel-title" href="#" data-id="${a.id}">${a.title}</a>${a.deprecated?'<span class="tag deprecated small">Flagged</span>':''}</td>
-      <td>${a.parent || ''}</td>
-      <td>${a.verification}</td>
-      <td>${a.owner}</td>
-      <td><a class="open-link" href="${a.url}" target="_blank">Open</a></td>
-      <td>${a.tags.map(t=>`<span class="tag small">${t}</span>`).join(' ')}</td>
-      <td>${a.last_edited}</td>
-      <td>
-        <div class="health"><div class="health-bar" style="--score:${a.healthScore}"></div><div class="health-num">${a.healthScore}%</div></div>
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
-
-  // attach selection handlers (no new tab)
-  document.querySelectorAll('.sel-title').forEach(el=>{
-    el.addEventListener('click', (e)=>{
-      e.preventDefault();
-      const id = e.currentTarget.dataset.id;
-      const art = articles.find(x=>x.id===id);
-      setSelected(art);
-      // scroll into view
-      document.getElementById('selectedCard').scrollIntoView({behavior:'smooth'});
-    });
-  });
+function renderTable(){
+ const tb=document.querySelector('#articlesTable tbody');tb.innerHTML='';
+ articles.forEach(a=>{
+   const tr=document.createElement('tr');
+   tr.innerHTML=`<td><a href="article.html">${a.title}</a>${a.tags.includes("DEPRECATED")?'<span class="badge deprecated">Deprecated</span>':''}</td>
+                 <td>${a.parent}</td><td>${a.owner}</td><td>${a.last}</td>
+                 <td>${a.tags.map(t=>`<span class="tag small">${t}</span>`).join(' ')}</td>
+                 <td><div class="health"><div class="health-bar" style="--score:${a.health}"></div><div class="health-num">${a.health}%</div></div></td>`;
+   tr.addEventListener('click',()=>setSelected(a));
+   tb.appendChild(tr);
+ });
 }
+renderTable();
 
-// Network with relationship labels
 function renderNetwork(){
-  const svg = document.getElementById('networkSVG');
-  svg.innerHTML = '';
-  const coords = [
-    {x:90,y:90, id:'a1'},
-    {x:260,y:40, id:'a2'},
-    {x:460,y:80, id:'a3'},
-    {x:640,y:40, id:'a4'},
-    {x:780,y:140, id:'a5'}
-  ];
-  const links = [
-    {from:'a1',to:'a2',label:'related'},
-    {from:'a1',to:'a4',label:'parent'},
-    {from:'a2',to:'a3',label:'error'},
-    {from:'a3',to:'a5',label:'deprecated-ref'}
-  ];
-
-  // draw links + labels
-  links.forEach(l=>{
-    const f = coords.find(c=>c.id===l.from);
-    const t = coords.find(c=>c.id===l.to);
-    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
-    line.setAttribute('x1',f.x); line.setAttribute('y1',f.y);
-    line.setAttribute('x2',t.x); line.setAttribute('y2',t.y);
-    line.setAttribute('stroke','#cfe8d9'); line.setAttribute('stroke-width','2');
-    svg.appendChild(line);
-
-    const mx = (f.x+t.x)/2, my = (f.y+t.y)/2;
-    const lab = document.createElementNS('http://www.w3.org/2000/svg','text');
-    lab.setAttribute('x', mx); lab.setAttribute('y', my-6); lab.setAttribute('font-size','11'); lab.setAttribute('fill','#2f5b3f');
-    lab.setAttribute('text-anchor','middle'); lab.textContent = l.label;
-    svg.appendChild(lab);
-  });
-
-  // nodes
-  coords.forEach(c=>{
-    const a = articles.find(x=>x.id===c.id);
-    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
-    g.setAttribute('transform',`translate(${c.x-70},${c.y-20})`);
-    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    rect.setAttribute('width','140'); rect.setAttribute('height','40'); rect.setAttribute('rx','8');
-    rect.setAttribute('fill', a.deprecated? '#111' : '#fff');
-    rect.setAttribute('stroke', '#2f5b3f'); rect.setAttribute('stroke-width','1.5');
-    const text = document.createElementNS('http://www.w3.org/2000/svg','text');
-    text.setAttribute('x','10'); text.setAttribute('y','25'); text.setAttribute('font-size','11');
-    text.setAttribute('fill', a.deprecated? '#fff' : '#16381f');
-    text.textContent = a.title.length>24 ? a.title.slice(0,24)+'…' : a.title;
-    g.appendChild(rect); g.appendChild(text);
-    svg.appendChild(g);
-  });
+ const svg=document.getElementById('networkSVG');svg.innerHTML='';
+ const coords={a1:{x:150,y:120},a2:{x:400,y:80},a3:{x:650,y:120},a4:{x:400,y:260}};
+ const links=[{f:'a1',t:'a2',l:'related'},{f:'a2',t:'a3',l:'error'},{f:'a1',t:'a4',l:'duplicate'}];
+ links.forEach(l=>{
+   const f=coords[l.f],t=coords[l.t];
+   const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+   line.setAttribute('x1',f.x);line.setAttribute('y1',f.y);
+   line.setAttribute('x2',t.x);line.setAttribute('y2',t.y);
+   line.setAttribute('stroke','#cfe8d9');line.setAttribute('stroke-width','2');
+   svg.appendChild(line);
+   const lab=document.createElementNS('http://www.w3.org/2000/svg','text');
+   lab.setAttribute('x',(f.x+t.x)/2);lab.setAttribute('y',(f.y+t.y)/2-6);
+   lab.setAttribute('font-size','11');lab.setAttribute('fill','#2f5b3f');
+   lab.setAttribute('text-anchor','middle');lab.textContent=l.l;svg.appendChild(lab);
+ });
+ Object.entries(coords).forEach(([id,c])=>{
+   const a=articles.find(x=>x.id===id);
+   const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+   g.setAttribute('transform',`translate(${c.x-70},${c.y-20})`);
+   const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');
+   rect.setAttribute('width','140');rect.setAttribute('height','40');rect.setAttribute('rx','8');
+   rect.setAttribute('fill',a.tags.includes("DEPRECATED")?'#111':'#fff');
+   rect.setAttribute('stroke','#2f5b3f');rect.setAttribute('stroke-width','1.5');
+   const text=document.createElementNS('http://www.w3.org/2000/svg','text');
+   text.setAttribute('x','10');text.setAttribute('y','25');text.setAttribute('font-size','11');
+   text.setAttribute('fill',a.tags.includes("DEPRECATED")?'#fff':'#16381f');
+   text.textContent=a.title.length>20?a.title.slice(0,20)+'…':a.title;
+   g.appendChild(rect);g.appendChild(text);svg.appendChild(g);
+ });
 }
-
-// selection display
-function setSelected(art){
-  document.getElementById('selTitle').textContent = art.title;
-  document.getElementById('metaRow').innerHTML = `<strong>Parent:</strong> ${art.parent} • <strong>Owner:</strong> ${art.owner} • <strong>Last Edited:</strong> ${art.last_edited}`;
-  document.getElementById('tagRow').innerHTML = art.tags.map(t=>`<span class="tag small">${t}</span>`).join(' ') + ' <span class="muted small"> (editable in real system)</span>';
-  const sug = document.getElementById('suggestions');
-  sug.innerHTML = '';
-  if(art.suggested.length===0) {
-    sug.innerHTML = '<p class="muted">No AI suggestions. Content looks healthy.</p>';
-    return;
-  }
-  art.suggested.forEach((s, i)=>{
-    const div = document.createElement('div');
-    div.className = 'suggestion';
-    div.innerHTML = `
-      <div class="suggest-row">
-        <div class="suggest-meta"><strong>${s.type.toUpperCase()}</strong> — ${s.source} <a href="${s.link}" target="_blank" style="margin-left:8px;font-size:12px">source</a></div>
-        <div class="suggest-text">${s.text}</div>
-      </div>
-      <div class="suggest-actions">
-        <button class="small btn-approve" data-aid="${art.id}" data-idx="${i}">Approve</button>
-        <button class="small btn-edit" data-aid="${art.id}" data-idx="${i}">Edit</button>
-        <button class="small btn-done" data-aid="${art.id}" data-idx="${i}">Mark addressed</button>
-      </div>
-    `;
-    sug.appendChild(div);
-  });
-
-  // handlers
-  sug.querySelectorAll('.btn-approve').forEach(b=>b.addEventListener('click', ()=>alert('Approved (mock).')));
-  sug.querySelectorAll('.btn-edit').forEach(b=>b.addEventListener('click', ()=>alert('Open editor (mock).')));
-  sug.querySelectorAll('.btn-done').forEach(b=>b.addEventListener('click', ()=>alert('Marked addressed (mock).')));
-}
-
-// new article flow (mock)
-document.getElementById('newArticleBtn').addEventListener('click', ()=>{
-  const parent = prompt("Parent topic (e.g., Bill Pay, Accounting):","Bill Pay");
-  if(!parent) return;
-  const title = prompt("New article title:","Untitled article");
-  if(!title) return;
-  alert(`New article draft created under "${parent}" (mock). Next: authoring -> AI suggestions -> review -> publish.`);
-});
-
-renderTable(articles);
 renderNetwork();
 
-document.getElementById('refreshBtn').addEventListener('click', ()=>{ renderTable(articles); renderNetwork(); });
+function setSelected(a){
+ document.getElementById('selTitle').textContent=a.title;
+ document.getElementById('metaRow').innerHTML=`<strong>Parent:</strong> ${a.parent} • <strong>Owner:</strong> ${a.owner} • <strong>Last Edited:</strong> ${a.last}`;
+ document.getElementById('tagRow').innerHTML=a.tags.map(t=>`<span class="tag small">${t}</span>`).join(' ');
+ const sug=document.getElementById('suggestions');sug.innerHTML='';
+ if(a.suggested.length===0){sug.innerHTML='<p class="muted">No AI suggestions.</p>';return;}
+ a.suggested.forEach(s=>{
+   const div=document.createElement('div');div.className='suggestion';
+   div.innerHTML=`<div class="suggest-meta"><span class="tag small" style="background:#e5e5e5;color:#444">${s.type}</span> — ${s.source}</div>
+     <div class="suggest-text">${s.text}</div>
+     <div class="suggest-actions"><button class="small">Approve</button><button class="small">Edit</button><button class="small">Addressed</button></div>`;
+   sug.appendChild(div);
+ });
+}
 
+document.getElementById('newArticleBtn').addEventListener('click',()=>window.location.href="new-article.html");
+document.getElementById('refreshBtn').addEventListener('click',()=>{renderTable();renderNetwork();});
 </script>
 </body>
 </html>
