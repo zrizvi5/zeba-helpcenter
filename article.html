@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ramp Help Article — Bill payment methods and timelines</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <div class="brand-wrap">
+      <img src="ramplogo.png" alt="Ramp" class="logo">
+      <h1 class="brand small">Operator Article View</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="operator.html">Operator UX</a>
+      <a href="human.html">Human UX</a>
+      <a href="ai.html">AI UX</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- Metadata -->
+  <section class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <h2>Bill payment methods and timelines</h2>
+        <div class="muted small">Parent: <strong>Bill Pay</strong> • Owner: <strong>Payments</strong> • Last Edited: Sept 10, 2025</div>
+        <div class="tags" style="margin-top:10px;">
+          <span class="tag">Bill Payment</span>
+          <span class="tag">Plus Feature</span>
+          <span class="tag">Enterprise Account</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="small">Edit Content</button>
+        <button class="small">Edit Hierarchy</button>
+        <button class="small">Edit Metadata</button>
+      </div>
+    </div>
+    <div class="health" style="margin-top:12px;">
+      <div class="health-bar" style="--score:88"></div>
+      <div class="health-num">88% Content Health</div>
+    </div>
+  </section>
+
+  <!-- Article body -->
+  <section class="panel">
+    <h3>Article Content</h3>
+    <p>
+      This article describes payment rails available in Ramp Bill Pay and their expected timelines.
+    </p>
+
+    <h4>US Customers</h4>
+    <ul>
+      <li>ACH payments: 1–2 business days (typical).</li>
+      <li>Check processing: 3–5 business days.</li>
+      <li>Expedited options available for Plus customers.</li>
+    </ul>
+    <div class="suggestion">
+      <div class="suggest-meta">⚠️ <span class="tag small" style="background:#e5e5e5;color:#444">AI Flag: Deprecated Feature</span> — from GitHub commit #894</div>
+      <div class="suggest-text">Article references legacy <em>ACH-Lite</em> flow, which was deprecated Aug 2025.</div>
+      <div class="suggest-actions">
+        <button class="small">Approve</button>
+        <button class="small">Edit</button>
+        <button class="small">Mark addressed</button>
+      </div>
+    </div>
+
+    <h4>International Customers</h4>
+    <ul>
+      <li>International wire: 1–3 business days depending on correspondent banks.</li>
+      <li>Currency conversion may add 1 business day.</li>
+    </ul>
+    <div class="suggestion">
+      <div class="suggest-meta">💡 <span class="tag small" style="background:#e5e5e5;color:#444">AI Flag: Outdated Terminology</span> — from Product Flow (internal docs)</div>
+      <div class="suggest-text">Processing time listed as 3–5 days in article, but flow docs say 2 days.</div>
+      <div class="suggest-actions">
+        <button class="small">Approve</button>
+        <button class="small">Edit</button>
+        <button class="small">Mark addressed</button>
+      </div>
+    </div>
+
+    <h4>Plus Members</h4>
+    <ul>
+      <li>Auto-approval and expedited rails for approved suppliers.</li>
+      <li>ERP sync and advanced tracking available for Plus customers.</li>
+    </ul>
+  </section>
+
+  <!-- AI Suggestions summary -->
+  <section class="panel">
+    <h3>AI Suggestions for Operators</h3>
+    <div class="article-card">
+      <div class="suggestion">
+        <div class="suggest-meta"><strong>Tag Suggestion</strong> — from Search queries 30d</div>
+        <div class="suggest-text">Consider adding tag: <em>International</em></div>
+        <div class="suggest-actions">
+          <button class="small">Approve</button>
+          <button class="small">Reject</button>
+        </div>
+      </div>
+      <div class="suggestion">
+        <div class="suggest-meta"><strong>Deprecated Reference</strong> — from GitHub commit #894</div>
+        <div class="suggest-text">Legacy <em>ACH-Lite</em> flow detected.</div>
+        <div class="suggest-actions">
+          <button class="small">Approve</button>
+          <button class="small">Edit</button>
+          <button class="small">Mark addressed</button>
+        </div>
+      </div>
+      <div class="suggestion">
+        <div class="suggest-meta"><strong>Conflict</strong> — from Product Flow (internal)</div>
+        <div class="suggest-text">Discrepancy: Docs say 2-day processing; article says 3–5 days.</div>
+        <div class="suggest-actions">
+          <button class="small">Approve</button>
+          <button class="small">Edit</button>
+          <button class="small">Mark addressed</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container"><small>Ramp Operator Article View — AI-assisted content review</small></div>
+</footer>
+</body>
+</html>
