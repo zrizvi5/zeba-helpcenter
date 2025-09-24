@@ -1,68 +1,51 @@
-/* Fonts
-   If you have TWK Lausanne font files, place them under assets/fonts/ and uncomment the @font-face below.
-   Otherwise, Manrope from Google Fonts will be used as the fallback (included here).
-*/
-
-/* Google fallback font */
+/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap');
 
-/* Example @font-face if you upload TWK Lausanne files:
-@font-face {
-  font-family: 'TWKLausanne';
-  src: url('assets/fonts/Lausanne-Regular.woff2') format('woff2'),
-       url('assets/fonts/Lausanne-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-*/
-
-/* Use TWKLausanne if available, otherwise Manrope */
 :root{
-  --font-main: 'TWKLausanne', 'Manrope', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --fg: #07140b; /* near-black */
-  --muted: #6b6f6a;
-  --bg: #ffffff;
-  --card: #ffffff;
-  --forest: #0f5132; /* deep forest green */
-  --light-green: #d8f3e3; /* very light green */
-  --accent: #9dd9b7; /* mid green */
-  --danger: #ef4444;
-  --warning: #f59e0b;
+  --font-main: 'TWKLausanne','Manrope',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  --fg:#07140b;
+  --muted:#6b6f6a;
+  --bg:#ffffff;
+  --card:#ffffff;
+  --forest:#0f5132;
+  --light-green:#d8f3e3;
+  --accent:#9dd9b7;
+  --danger:#ef4444;
+  --warning:#f59e0b;
 }
 
-/* base */
 *{box-sizing:border-box}
 body{font-family:var(--font-main);margin:0;background:linear-gradient(#fbfdfb,#ffffff);color:var(--fg);-webkit-font-smoothing:antialiased}
 .container{max-width:1100px;margin:0 auto;padding:20px}
-.topbar{background:var(--forest); color:white}
+
+.topbar{background:var(--forest);color:white}
 .topbar .container{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+.brand-wrap{display:flex;align-items:center;gap:10px}
+.logo{height:20px}
 .brand{margin:0;font-weight:700;letter-spacing:0.2px}
 .brand.small{font-size:18px}
 .topbar nav a{color:white;margin-left:18px;text-decoration:none;font-weight:600;opacity:0.95}
 .topbar nav a:hover{opacity:1}
 
 /* hero */
-.hero{background:linear-gradient(180deg, rgba(15,81,50,0.06), transparent); padding:28px; border-radius:10px; margin-top:18px; box-shadow:0 6px 18px rgba(4,28,18,0.05)}
+.hero{background:linear-gradient(180deg,rgba(15,81,50,0.06),transparent);padding:28px;border-radius:10px;margin-top:18px;box-shadow:0 6px 18px rgba(4,28,18,0.05)}
 .hero h2{margin:0 0 8px 0}
 .tagline{color:var(--muted)}
 
 /* panels */
-.panel{background:var(--card); border-radius:10px; padding:18px; margin:18px 0; box-shadow:0 4px 12px rgba(14, 38, 28, 0.04)}
+.panel{background:var(--card);border-radius:10px;padding:18px;margin:18px 0;box-shadow:0 4px 12px rgba(14,38,28,0.04)}
 .panel-head{display:flex;justify-content:space-between;align-items:center}
 .panel h3{margin-top:0}
 
 /* buttons */
-.cta{background:var(--forest);color:white;padding:10px 14px;border-radius:8px;text-decoration:none;display:inline-block;border:1px solid rgba(0,0,0,0.04)}
-.cta.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06); color: #08306f}
-.cta.small{padding:8px 10px;font-size:13px;border-radius:6px}
-button{cursor:pointer}
-button.small{padding:6px 8px;border-radius:6px;border:1px solid rgba(0,0,0,0.06);background:#fff}
+.cta,button{background:var(--forest);color:white;padding:10px 14px;border-radius:8px;text-decoration:none;border:1px solid rgba(0,0,0,0.04);cursor:pointer;font-size:14px}
+.cta.small,button.small{padding:6px 10px;font-size:13px;border-radius:6px}
+button.secondary{background:#fff;color:var(--forest);border:1px solid #cfe8d9}
+button:hover,.cta:hover{opacity:0.9}
 
 /* input & filters */
-.search-row input, .disclosure-box select, .filters-inline input, .filters-inline select, .chat-input input {
-  padding:10px;border-radius:8px;border:1px solid #e6efe6;background:#fff;min-width:160px;
-}
+input,select{padding:10px;border-radius:8px;border:1px solid #e6efe6;background:#fff;min-width:160px}
+.search-row input{flex:1}
 .filters-row{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
 
 /* table */
@@ -74,65 +57,46 @@ button.small{padding:6px 8px;border-radius:6px;border:1px solid rgba(0,0,0,0.06)
 
 /* health bar */
 .health{display:flex;align-items:center;gap:8px}
-.health-bar{width:120px;height:8px;background:#f1fbf4;border-radius:6px; position:relative; overflow:hidden}
-.health-bar::after{content:'';position:absolute;left:0;top:0;height:100%;width:calc(var(--score) * 1%); background:linear-gradient(90deg,var(--accent),var(--forest))}
+.health-bar{width:120px;height:8px;background:#f1fbf4;border-radius:6px;position:relative;overflow:hidden}
+.health-bar::after{content:'';position:absolute;left:0;top:0;height:100%;width:calc(var(--score) * 1%);background:linear-gradient(90deg,var(--accent),var(--forest))}
 .health-num{font-size:12px;color:var(--muted)}
 
 /* network */
-.network{width:100%;height:320px;background:linear-gradient(180deg,#ffffff,#f4faf5);border-radius:8px;display:block;padding:12px;border:1px solid #eaf6ec}
+.network{width:100%;height:360px;background:linear-gradient(180deg,#ffffff,#f4faf5);border-radius:8px;display:block;padding:12px;border:1px solid #eaf6ec}
 
-/* article card & suggestions */
-.article-card{padding:12px;border-radius:8px;border:1px dashed #eaf6ec;background:#fff}
+/* suggestion */
 .suggestion{border-top:1px solid #f1fbf6;padding:8px 0}
 .suggest-meta{font-size:12px;color:var(--muted)}
-.suggest-text{margin-top:6px}
-.suggest-actions{margin-top:8px}
-
-/* flags */
-.flag{font-size:12px;padding:6px 8px;border-radius:8px;display:inline-block;margin-top:8px}
-.flag.low_rating{background:var(--warning);color:#5b3a00}
-.flag.deprecated{background:#111;color:white}
-.flag.new_code{background:var(--danger);color:white}
+.suggest-actions button{margin-right:6px}
 
 /* hierarchy */
 .hierarchy details{background:#fff;border-radius:8px;padding:10px;margin:8px 0;border:1px solid #e8f6ec}
 .hierarchy summary{font-weight:600;color:var(--forest);cursor:pointer}
 
-/* grid helpers */
-.half{display:inline-block; width:49%; vertical-align:top;}
-.hint{color:var(--muted);font-size:13px}
-
-/* user UX */
-.disclosure-box{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}
-.article-section{background:#fff;border-radius:8px;padding:12px;margin-top:12px}
-.article-section.hidden{display:none}
-.topics-grid{display:flex;gap:12px}
+/* topics */
+.topics-grid{display:flex;gap:12px;flex-wrap:wrap}
 .topic-card{flex:1;background:#fff;border-radius:8px;padding:14px;border:1px solid #eef7ef}
+.topic-card h4{margin-top:0}
+.topic-card ul{padding-left:16px}
 
 /* search results */
 .search-result{background:#fff;border-radius:8px;padding:12px;margin-bottom:10px;border:1px solid #eef7ef}
+
+/* article view */
+.tabs{margin-top:14px}
+.tabbtn{background:#f7fdf9;color:#16381f;padding:8px 14px;border:none;border-radius:6px;margin-right:6px;cursor:pointer}
+.tabbtn.active{background:var(--forest);color:white}
+.tabpane{margin-top:10px}
 
 /* chat */
 .chat-wrap{display:flex;flex-direction:column;gap:12px}
 .chat-log{height:320px;overflow:auto;border-radius:8px;padding:12px;background:linear-gradient(180deg,#ffffff,#f7fff7);border:1px solid #eaf6ec}
 .chat-log .bot{background:var(--light-green);padding:10px;border-radius:8px;margin-bottom:8px}
 .chat-log .user{background:#f5f7fb;padding:10px;border-radius:8px;margin-bottom:8px;text-align:right}
-.chat-input{display:flex;gap:8px;margin-top:8px}
-.meta-pill{display:inline-block;background:#eefaf0;padding:6px 8px;border-radius:8px;margin-right:6px;font-size:12px;color:var(--forest)}
-.confidence{margin-left:8px;font-size:13px;color:var(--muted)}
-.flag-note{margin-top:6px;padding:8px;background:#fff6f4;border-left:4px solid var(--warning);border-radius:6px}
+.chat-input{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.meta-pill{display:inline-block;background:#eef7ef;color:#2f5b3f;padding:3px 6px;border-radius:6px;font-size:11px;margin-right:4px}
 
-/* extra small */
+/* misc */
 .muted{color:var(--muted)}
 .small{font-size:12px}
-
-/* footer */
-.footer{background:transparent;padding:20px;text-align:center;color:var(--muted);}
-
-/* responsive */
-@media(max-width:900px){
-  .half{width:100%;display:block}
-  .topbar .container{flex-direction:column;gap:8px}
-  .disclosure-box{flex-direction:column;align-items:stretch}
-  .filters-row{flex-direction:column;align-items:stretch}
-}
+.footer{background:transparent;padding:20px;text-align:center;color:var(--muted)}
