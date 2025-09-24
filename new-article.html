@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>New Article — Operator Flow</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <div class="brand-wrap">
+      <img src="ramplogo.png" alt="Ramp" class="logo">
+      <h1 class="brand small">Operator Center — New Article</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="operator.html">Operator UX</a>
+      <a href="human.html">Human UX</a>
+      <a href="ai.html">AI UX</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- Title -->
+  <section class="panel">
+    <label for="articleTitleInput"><strong>Article Title</strong></label>
+    <input id="articleTitleInput" placeholder="Enter article title..." style="width:100%;margin-top:8px;">
+  </section>
+
+  <!-- Metadata -->
+  <section class="panel">
+    <h3>Metadata (Tags)</h3>
+    <input id="metaInput" placeholder="Add tags, separated by commas (e.g., Bill Pay, Plus Feature)" style="width:100%;">
+  </section>
+
+  <!-- General Info -->
+  <section class="panel">
+    <h3>General Information</h3>
+    <textarea id="generalInfo" placeholder="Write the general article content here..." style="width:100%;height:160px;"></textarea>
+  </section>
+
+  <!-- Targeted Info -->
+  <section class="panel">
+    <h3>Targeted Section</h3>
+    <p class="muted small">Attach tags so this section only shows for certain roles, regions, or product tiers.</p>
+    <input id="sectionTags" placeholder="Tags for this section (e.g., Admin, UK, Plus)">
+    <textarea id="sectionContent" placeholder="Write section-specific content here..." style="width:100%;height:120px;margin-top:8px;"></textarea>
+  </section>
+
+  <!-- Action Buttons -->
+  <section class="panel" style="text-align:right;">
+    <button id="reviewBtn" class="cta small">Review AI Suggestions</button>
+    <button id="publishBtn" class="cta small">Publish Article</button>
+  </section>
+
+  <!-- AI Suggestions -->
+  <section id="aiSuggestions" class="panel" style="display:none;">
+    <h3>AI Suggestions</h3>
+    <div class="suggestion">
+      <div class="suggest-meta">💡 Tag Suggestion — from search data</div>
+      <div class="suggest-text">Consider adding tag: <em>International</em></div>
+      <div class="suggest-actions">
+        <button class="small">Approve</button>
+        <button class="small">Reject</button>
+      </div>
+    </div>
+    <div class="suggestion">
+      <div class="suggest-meta">⚠️ Deprecated Reference — from GitHub commit #894</div>
+      <div class="suggest-text">Article may reference legacy <em>ACH-Lite</em> flow.</div>
+      <div class="suggest-actions">
+        <button class="small">Approve</button>
+        <button class="small">Reject</button>
+      </div>
+    </div>
+    <div class="suggestion">
+      <div class="suggest-meta">🔄 Conflict — from Product Flow</div>
+      <div class="suggest-text">Processing time listed as 3–5 days, internal docs say 2 days.</div>
+      <div class="suggest-actions">
+        <button class="small">Approve</button>
+        <button class="small">Reject</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container"><small>New Article Creation Flow — AI-assisted authoring</small></div>
+</footer>
+
+<script>
+document.getElementById('reviewBtn').addEventListener('click',()=>{
+  document.getElementById('aiSuggestions').style.display='block';
+  window.scrollTo({top:document.getElementById('aiSuggestions').offsetTop-100,behavior:'smooth'});
+});
+
+document.getElementById('publishBtn').addEventListener('click',()=>{
+  alert('Article published (mock flow). It will now appear in the Operator Dashboard.');
+});
+</script>
+</body>
+</html>
