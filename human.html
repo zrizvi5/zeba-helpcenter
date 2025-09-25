@@ -24,25 +24,29 @@
   <main class="container">
 
     <!-- Search -->
-    <section class="panel" style="background:var(--forest);color:white;">
+    <section class="panel" style="background:linear-gradient(135deg, #0f5132, #198754); color:white;">
       <h2>How can we help?</h2>
       <div class="search-row" style="display:flex;flex-direction:column;gap:12px;">
         <input id="mainSearch" placeholder="Search articles, e.g. 'Paying bills'" style="width:100%;padding:14px;">
         <div class="filters-row">
           <select id="accountType">
+            <option value="selectaccounttype">Select Account Type</option>
             <option value="individual">Individual</option>
             <option value="enterprise">Enterprise</option>
           </select>
           <select id="roleFilter">
+            <option value="selectrole">Select Role</option>
             <option value="cardholder">Cardholder</option>
             <option value="admin">Admin</option>
             <option value="accountant">Accountant</option>
           </select>
           <select id="tierFilter">
+            <option value="selecttier">Select Account Tier</option>
             <option value="free">Free</option>
             <option value="plus">Plus</option>
           </select>
           <select id="regionFilter">
+            <option value="selectregion">Select Region</option>
             <option value="us">US</option>
             <option value="uk">UK</option>
             <option value="intl">Other</option>
