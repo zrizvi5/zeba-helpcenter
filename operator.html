@@ -31,19 +31,19 @@
     <div id="hierarchy" class="hierarchy">
       <details open><summary>Accounting</summary>
         <ul>
-          <li><a href="article.html">Auto-capture receipts</a></li>
-          <li><a href="article.html">Integrating with QuickBooks</a></li>
+          <li><span style="color:#0a58ca;cursor:pointer;text-decoration:underline;">Auto-capture receipts</span></li>
+          <li><span style="color:#0a58ca;cursor:pointer;text-decoration:underline;">Integrating with QuickBooks</span></li>
         </ul>
       </details>
       <details open><summary>Bill Pay</summary>
         <ul>
           <li><a href="article.html">Bill payment methods and timelines</a></li>
-          <li><a href="article.html">Legacy Billing Flow</a></li>
+          <li><span style="color:#0a58ca;cursor:pointer;text-decoration:underline;">Legacy Billing Flow</span></li>
         </ul>
       </details>
       <details><summary>Cards & Transactions</summary>
         <ul>
-          <li><a href="article.html">Managing Card Limits</a></li>
+          <li><span style="color:#0a58ca;cursor:pointer;text-decoration:underline;">Managing Card Limits</span></li>
         </ul>
       </details>
     </div>
@@ -55,23 +55,23 @@
       <h2>Article Health Dashboard</h2>
       <div class="filters-inline">
         <input id="searchArticles" placeholder="Search articles...">
+        <select id="flagFilter">
+            <option value="">All Articles</option>
+            <option value="ai-flagged">AI Flagged Only</option>
+        </select>
         <button id="refreshBtn" class="small secondary">Refresh</button>
         <button id="newArticleBtn" class="cta small">+ New Article</button>
       </div>
     </div>
     <table class="dashboard-table" id="articlesTable">
       <thead><tr>
-        <th>Title</th><th>Parent</th><th>Owner</th><th>Last Edited</th><th>Tags</th><th>Content Health</th>
+        <th>Title</th><th>Parent</th><th>Owner</th><th>Last Edited</th><th>Content Health</th><th>Tags</th>
       </tr></thead>
       <tbody></tbody>
     </table>
   </section>
 
-  <!-- Network -->
-  <section class="panel">
-    <h3>Article Relationship Network</h3>
-    <svg id="networkSVG" viewBox="0 0 900 400" class="network"></svg>
-  </section>
+  
 
   <!-- Suggestions -->
   <section class="panel">
@@ -82,6 +82,11 @@
       <div id="tagRow"></div><hr>
       <div id="suggestions"></div>
     </div>
+  </section>
+   <!-- Network -->
+  <section class="panel">
+    <h3>Article Relationship Network</h3>
+    <svg id="networkSVG" viewBox="0 0 900 400" class="network"></svg>
   </section>
 </main>
 
@@ -98,22 +103,47 @@ const articles=[
    suggested:[{type:"AI Flag: Outdated Terminology",text:"Mentions old receipt-scanner flow",source:"GitHub commit #342"}]},
  {id:'a3',title:"Managing Card Limits",parent:"Cards & Transactions",owner:"Finance",last:"2024-12-12",tags:["Cards"],health:42,
    suggested:[{type:"AI Flag: Outdated Terminology",text:"Low helpfulness rating. Add screenshots.",source:"User feedback"}]},
- {id:'a4',title:"Legacy Billing Flow",parent:"Bill Pay",owner:"—",last:"2021-03-05",tags:["DEPRECATED"],health:10,suggested:[]}
+ {id:'a4',title:"Legacy Billing Flow",parent:"Bill Pay",owner:"—",last:"2021-03-05",tags:["Deprecated Term"],health:10,suggested:[]}
 ];
 
 function renderTable(){
- const tb=document.querySelector('#articlesTable tbody');tb.innerHTML='';
- articles.forEach(a=>{
-   const tr=document.createElement('tr');
-   tr.innerHTML=`<td><a href="article.html">${a.title}</a>${a.tags.includes("DEPRECATED")?'<span class="badge deprecated">Deprecated</span>':''}</td>
-                 <td>${a.parent}</td><td>${a.owner}</td><td>${a.last}</td>
-                 <td>${a.tags.map(t=>`<span class="tag small">${t}</span>`).join(' ')}</td>
-                 <td><div class="health"><div class="health-bar" style="--score:${a.health}"></div><div class="health-num">${a.health}%</div></div></td>`;
-   tr.addEventListener('click',()=>setSelected(a));
-   tb.appendChild(tr);
- });
+  const tb=document.querySelector('#articlesTable tbody');
+  tb.innerHTML='';
+  articles.forEach(a=>{
+    const tr=document.createElement('tr');
+
+    // AI flag logic
+    let aiFlagHTML = '';
+    if(a.title === "Legacy Billing Flow"){
+      aiFlagHTML = '<div><span class="tag small" style="background:#e5e5e5;color:#444;">AI Flag: Deprecated Feature</span></div>';
+    }
+    if(a.title === "Managing Card Limits"){
+      aiFlagHTML = '<div><span class="tag small" style="background:#e5e5e5;color:#444;">AI Flag: Outdated Terminology</span></div>';
+    }
+
+    tr.innerHTML = `
+      <td><a href="article.html">${a.title}</a></td>
+      <td>${a.parent}</td>
+      <td>${a.owner}</td>
+      <td>${a.last}</td>
+      <td>
+        <div class="health">
+          <div class="health-bar" style="--score:${a.health}"></div>
+          <div class="health-num">${a.health}%</div>
+        </div>
+        ${aiFlagHTML}
+      </td>
+      <td>
+        ${a.tags.map(t=>`<span class="tag small">${t}</span>`).join(' ')}
+      </td>
+    `;
+
+    tr.addEventListener('click',()=>setSelected(a));
+    tb.appendChild(tr);
+  });
 }
 renderTable();
+
 
 function renderNetwork(){
  const svg=document.getElementById('networkSVG');svg.innerHTML='';
