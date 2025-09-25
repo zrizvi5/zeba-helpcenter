@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Ramp Help Article — Bill payment methods and timelines</title>
+  <title>Ramp Help Assistant — Chat Demo</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -11,126 +11,128 @@
   <div class="container">
     <div class="brand-wrap">
       <img src="ramplogo.png" alt="Ramp" class="logo">
-      <h1 class="brand small">Operator Article View</h1>
+      <h1 class="brand small">Ramp Help Assistant</h1>
     </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="operator.html">Operator UX</a>
       <a href="human.html">Human UX</a>
-      <a href="ai.html">AI UX</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
-  <!-- Metadata -->
   <section class="panel">
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <div>
-        <h2>Bill payment methods and timelines</h2>
-        <div class="muted small">Parent: <strong>Bill Pay</strong> • Owner: <strong>Payments</strong> • Last Edited: Sept 10, 2025</div>
-        <div class="tags" style="margin-top:10px;">
-          <span class="tag">Bill Payment</span>
-          <span class="tag">Plus Feature</span>
-          <span class="tag">Enterprise Account</span>
-        </div>
+    <h2>Ask our Help Assistant</h2>
+    <div class="chat-wrap">
+      <div id="chatLog" class="chat-log">
+        <div class="bot">🤖 Hi — ask me product help. I’ll retrieve snippets with metadata & confidence.</div>
       </div>
-      <div style="display:flex;gap:8px;">
-        <button class="small">Edit Content</button>
-        <button class="small">Edit Hierarchy</button>
-        <button class="small">Edit Metadata</button>
+
+      <div class="chat-input">
+        <input id="userQ" placeholder="Ask me anything about Ramp (e.g., 'How do I set a card limit for UK admins?')" style="flex:1;" />
+        <select id="pretendRole">
+          <option value="roleselection">Select Role:</option>
+          <option value="admin">Admin</option>
+          <option value="card">Cardholder</option>
+          <option value="accountant">Accountant</option>
+        </select>
+        <select id="pretendTier">
+          <option value="tierselection">Select Tier:</option>
+          <option value="free">Free</option>
+          <option value="plus">Plus</option>
+        </select>
+        <select id="pretendRegion">
+          <option value="regionselection">Select Region:</option>
+          <option value="us">US</option>
+          <option value="uk">UK</option>
+          <option value="intl">Other</option>
+        </select>
+        <button id="askBtn" class="cta">Ask</button>
       </div>
-    </div>
-    <div class="health" style="margin-top:12px;">
-      <div class="health-bar" style="--score:88"></div>
-      <div class="health-num">88% Content Health</div>
     </div>
   </section>
 
-  <!-- Article body -->
-  <section class="panel">
-    <h3>Article Content</h3>
-    <p>
-      This article describes payment rails available in Ramp Bill Pay and their expected timelines. In general, bill payments will take less than a week to process and be marked as complete. There are unique circumstances dependening on what type of customer you are and where you are located.
-    </p>
-
-    <h4>US Customers</h4>
+  <section class="panel small">
+    <h3>Retrieval behavior (mock)</h3>
     <ul>
-      <br>The following information is only relevant for US customers.</br><br>
-      <li>ACH payments: 1–2 business days (typical).</li>
-      <li>Check processing: 3–5 business days.</li>
-      <li>Expedited options available for Plus customers.</li>
+      <li><strong>Metadata-aware:</strong> Filters by role, tier, region before ranking.</li>
+      <li><strong>Snippet-level:</strong> Return top paragraph(s) with links to source articles.</li>
+      <li><strong>Confidence threshold:</strong> Low confidence triggers suggested-articles fallback and flags operator review.</li>
+      <li><strong>Usage-aware ranking:</strong> View counts + helpfulness influence rank and confidence.</li>
     </ul>
-    <div class="suggestion">
-      <div class="suggest-meta">⚠️ <span class="tag small" style="background:#e5e5e5;color:#444">AI Flag: Deprecated Feature</span> — from GitHub commit #894</div>
-      <div class="suggest-text">Article references legacy <em>ACH-Lite</em> flow, which was deprecated Aug 2025.</div>
-      <div class="suggest-actions">
-        <button class="small">Approve</button>
-        <button class="small">Edit</button>
-        <button class="small">Mark addressed</button>
-      </div>
-    </div>
-
-    <h4>International Customers</h4>
-    <ul>
-      <br>The following information is only relevant for International customers.</br><br>
-      <li>International wire: 1–3 business days depending on correspondent banks.</li>
-      <li>Currency conversion may add 1 business day.</li>
-    </ul>
-    <div class="suggestion">
-      <div class="suggest-meta">💡 <span class="tag small" style="background:#e5e5e5;color:#444">AI Flag: Outdated Terminology</span> — from Product Flow (internal docs)</div>
-      <div class="suggest-text">Processing time listed as 3–5 days in article, but flow docs say 2 days.</div>
-      <div class="suggest-actions">
-        <button class="small">Approve</button>
-        <button class="small">Edit</button>
-        <button class="small">Mark addressed</button>
-      </div>
-    </div>
-
-    <h4>Plus Members</h4>
-    <ul>
-      <br>The following information is only relevant for Plus customers.</br><br>
-      <li>Auto-approval and expedited rails for approved suppliers.</li>
-      <li>ERP sync and advanced tracking available for Plus customers.</li>
-    </ul>
-  </section>
-
-  <!-- AI Suggestions summary -->
-  <section class="panel">
-    <h3>AI Suggestions for Operators</h3>
-    <div class="article-card">
-      <div class="suggestion">
-        <div class="suggest-meta"><strong>Tag Suggestion</strong> — from Search queries 30d</div>
-        <div class="suggest-text">Consider adding tag: <em>International</em></div>
-        <div class="suggest-actions">
-          <button class="small">Approve</button>
-          <button class="small">Reject</button>
-        </div>
-      </div>
-      <div class="suggestion">
-        <div class="suggest-meta"><strong>Deprecated Reference</strong> — from GitHub commit #894</div>
-        <div class="suggest-text">Legacy <em>ACH-Lite</em> flow detected.</div>
-        <div class="suggest-actions">
-          <button class="small">Approve</button>
-          <button class="small">Edit</button>
-          <button class="small">Mark addressed</button>
-        </div>
-      </div>
-      <div class="suggestion">
-        <div class="suggest-meta"><strong>Conflict</strong> — from Product Flow (internal)</div>
-        <div class="suggest-text">Discrepancy: Docs say 2-day processing; article says 3–5 days.</div>
-        <div class="suggest-actions">
-          <button class="small">Approve</button>
-          <button class="small">Edit</button>
-          <button class="small">Mark addressed</button>
-        </div>
-      </div>
-    </div>
   </section>
 </main>
 
 <footer class="footer">
-  <div class="container"><small>Ramp Operator Article View — AI-assisted content review</small></div>
+  <div class="container"><small>Ramp Help Assistant demo — mock retrieval</small></div>
 </footer>
+
+<script>
+// Expanded corpus
+const corpus = [
+  {id:1, title:"Bill payment methods and timelines", paragraph:"ACH payments typically clear in 1–2 business days in the US; Plus members have expedited rails.", metadata:{role:"admin", tier:"all", region:"us"}, views:14240},
+  {id:2, title:"Managing Card Limits", paragraph:"Admins can set per-user card limits via Admin → Cards → Manage limit. UK admins can set limits in GBP.", metadata:{role:"admin", tier:"all", region:"uk"}, views:8420},
+  {id:3, title:"Plus: Auto-approval policies", paragraph:"Plus customers can configure auto-approval thresholds for faster procurement.", metadata:{role:"admin", tier:"plus", region:"all"}, views:3200},
+  {id:4, title:"Integrating with QuickBooks", paragraph:"Export receipts CSV then import to QuickBooks via Apps → QuickBooks import.", metadata:{role:"accountant", tier:"all", region:"us"}, views:3000},
+  {id:5, title:"Auto-capture receipts", paragraph:"Enable auto-capture by connecting your email and enabling forwarding. Works globally.", metadata:{role:"card", tier:"all", region:"all"}, views:12420},
+  {id:6, title:"Booking travel on Ramp", paragraph:"Employees can book flights and hotels through Ramp Travel. Admins can set policies per region.", metadata:{role:"card", tier:"all", region:"intl"}, views:4100}
+];
+
+const chatLog=document.getElementById('chatLog');
+function appendUser(text){const d=document.createElement('div');d.className='user';d.textContent=text;chatLog.appendChild(d);chatLog.scrollTop=chatLog.scrollHeight;}
+function appendBot(html){const d=document.createElement('div');d.className='bot';d.innerHTML=html;chatLog.appendChild(d);chatLog.scrollTop=chatLog.scrollHeight;}
+
+document.getElementById('askBtn').addEventListener('click',()=>{
+  const query=document.getElementById('userQ').value.trim();
+  const role=document.getElementById('pretendRole').value;
+  const tier=document.getElementById('pretendTier').value;
+  const region=document.getElementById('pretendRegion').value;
+  if(!query) return;
+  appendUser(query);
+  appendBot('Searching relevant articles...');
+
+  setTimeout(()=>{
+    let candidates=corpus.filter(c=>{
+      if(role && role!=='all' && c.metadata.role!==role && c.metadata.role!=='all') return false;
+      if(tier && tier!=='all' && c.metadata.tier!==tier && c.metadata.tier!=='all') return false;
+      if(region && region!=='all' && c.metadata.region!==region && c.metadata.region!=='all') return false;
+      return true;
+    });
+
+    if(candidates.length===0) candidates=corpus.slice();
+
+    // rank: simple keyword match boosts
+    const q=query.toLowerCase();
+    candidates.forEach(c=>{c.score=(c.views/200)+(q.includes(c.title.toLowerCase().split(" ")[0])?20:0);});
+    candidates.sort((a,b)=>b.score-a.score);
+
+    const top=candidates[0];
+    const confidence=Math.min(98,40+Math.floor(top.views/200));
+
+    if(confidence<55){
+      chatLog.lastChild.innerHTML='<em>Low confidence — returning suggested articles and flagging for operator review.</em>';
+      appendBot('<strong>Suggested articles</strong><br><ul><li><a href="article.html">Bill payment methods and timelines</a></li><li><a href="article.html">Auto-capture receipts</a></li></ul><div class="flag-note">Query flagged for operator review (mock)</div>');
+      return;
+    }
+
+    chatLog.lastChild.remove();
+    appendBot(`<div class="snippet">
+      <div class="snippet-text">${top.paragraph}</div>
+      <div class="snippet-meta">
+        <span class="meta-pill"><strong>Source:</strong> ${top.title}</span>
+        <span class="meta-pill"><strong>Role:</strong> ${top.metadata.role}</span>
+        <span class="meta-pill"><strong>Tier:</strong> ${top.metadata.tier}</span>
+        <span class="meta-pill"><strong>Region:</strong> ${top.metadata.region}</span>
+        <span class="meta-pill confidence"><strong>Confidence:</strong> ${confidence}%</span>
+      </div>
+      <div class="snippet-actions">
+        <button class="small" onclick="alert('Flagged for operator review (mock)')">Flag</button>
+        <button class="small" onclick="alert('Open article in Help Center (mock)')">Open Article</button>
+      </div>
+    </div>`);
+  },800);
+});
+</script>
 </body>
 </html>
