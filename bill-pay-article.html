@@ -64,6 +64,7 @@
         <option value="intl">Other</option>
       </select>
 
+      <label for="aiTailor">Tell our AI about yourself</label>
       <input id="aiInput" placeholder="Tell our AI more about who you are and how you use Ramp (e.g. 'I'm an enterprise account administrator for a UK B2B SaaS company')." style="flex:1;padding:12px;border-radius:8px;border:1px solid #d9e6da;">
       <button id="aiFindBtn" class="cta small">Tailor Content</button>
     </div>
@@ -71,6 +72,15 @@
 
   <!-- Tabs -->
   <section class="panel">
+
+    <div class="muted" style="margin-bottom:12px;">
+  <p>
+    This article describes payment rails available in Ramp Bill Pay and their expected timelines. In general, bill payments will take less than a week to process and be marked as complete. There are unique circumstances dependening on what type of customer you are and where you are located.  
+  </p>
+  <p>
+    You can submit Bill Pay through your Ramp portal.
+  </p>
+</div>
     <div class="tabs">
       <button class="tabbtn active" data-tab="us">US Customer</button>
       <button class="tabbtn" data-tab="intl">International Customer</button>
@@ -127,7 +137,7 @@ document.getElementById('aiFindBtn').addEventListener('click',()=>{
     document.querySelectorAll('.tabpane').forEach(p=>p.style.display='none');
     document.querySelector('[data-tab="intl"]').classList.add('active');
     document.getElementById('intl').style.display='block';
-    alert("Tailored: Showing International content (UK detected).");
+    //alert("Tailored: Showing International content (UK detected).");
   }
 });
 </script>
